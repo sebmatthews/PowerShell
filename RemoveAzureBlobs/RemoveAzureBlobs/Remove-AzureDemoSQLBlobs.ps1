@@ -35,17 +35,17 @@
 # 2) valid credentials
 # 3) the Azure module imported
 # here we define which Azure subscription we want to use
-$subscription = "Visual Studio Premium with MSDN"  
+$subscription = "YOUR SUBS NAME"  
 Select-AzureSubscription -SubscriptionName $subscription                            
 # define our connection to the storage account
-$storagename = "bigsebdemos"
+$storagename = "YOUR STORAGE ACC NAME"
 # this cmdlet means we don't have to pass the key in, we can 'get it out'
 $storagekey = Get-AzureStorageKey -StorageAccountName $storagename                                                      
 $primarykey = $storagekey.Primary                                                                                   
 # now we create our context for the storage account and 'connect' to it
 $azcontext = New-AzureStorageContext -StorageAccountName $storagename -StorageAccountKey $primarykey                    
 # next we 'connect' to the container we want to empty of blobs
-$activecontainer = "sql"
+$activecontainer = "YOUR CONTAINER NAME"
 $blobs = (Get-AzureStorageContainer -Context $azcontext) | ?{$_.Name -eq $activecontainer}                            
 
 # do the work
