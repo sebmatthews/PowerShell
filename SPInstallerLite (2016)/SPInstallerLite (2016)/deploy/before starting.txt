@@ -1,0 +1,50 @@
+Hey Happy PowerSheller!
+
+This file contains the things you need to be aware of to run the scripts provided.
+
+First up - make sure you have read the list of assumptions/advice below - if you miss some of these, things may not work as expected!
+
+Secondly, the scripts are provided and named to be as intuitive as possible.  If you can count, you should be ok.  In some cases running things out of order won't be bad, but in some cases things won't work.  Perhaps you should play with this?
+
+Third and goal - Remember (as stated in the readme) these scripts are provided to show you PowerShell principles and constructs in a SharePoint context.  They are not intended to be used as production deployment scripts.  Look at AutoSPInstaller if you need something to deploy your real-world SharePoint farms.  Use them in this way, learn, tweak, tinker, even piss about with them - but don't deploy them to production :)
+
+
+Assumptions/Advice
+
+1) It is assumed that you have installed SQL Server, SharePoint 2016 pre-requisites and the SharePoint 2016 binaries.
+	
+2) It is assumed that you have NOT run the configuration wizard.  In fact, don't.  Ever.
+
+3) These files need to be placed on a path rooted at R: (map a drive if you want).  You can change this but you will need to alter many of the scripts.  Extracted it should look like this - r:\powershell\deploy.  Perhaps this would be a nice piece of homework - to pass the path into the script as a parameter?  Simples!
+
+4) It is assumed that the execution policy of the machine on which you are running these scripts has been set to "bypass".  Please don't be too concerned at this time as to whether this is philosophically wise or not.
+
+5) It is assumed that IESC (enhanced IE security) is disabled for Administrators.  Again, don't get hung up on the philosophy of this.
+
+6) It is assumed that UAC is disabled.  Guess what, don't focus on the philosophy.
+
+7) To keep things simple, it is assumed that loopback checking has been disabled, you know what I will say about philosophy.
+
+8) The following Windows features should be installed if you want to make use of the upcoming part 2:
+	Backup-Features
+	Telnet-Client
+	PowerShell-ISE
+
+9) You need to install the 64bit Adobe PDF iFilter (search for the most recent version)
+
+10) To make things easier to follow, you might want to install the following (search for the most recent versions):
+	XML Notepad
+	PowerGUI
+
+11) The User Profile Service is deliberately omitted from this set of scripts as it can present a unique set of issues that will (potentially) cause a disproportionate amount of heartache.  There are plenty of good tutorials on the web (see @harbars material if you want to nail it) so use what you learn here and apply it to a UPS tutorial.  Awesome!
+
+
+Other Thoughts
+
+Take some time to make sure you have correctly filled out the XML configuration file.  It is simple and (hopefully) self-explanatory.  Most issues with these scripts will occur due to errors in this file.  Trust me.
+
+I would heartily recommend you use these scripts within a virtualised environment that can be snapshot'd (snapshotted?  snapshite?) and that you take a snapshot of each of the VM guests (including your test DC) whilst they are turned off prior to starting.  I find this approach allows rollback with 100% integrity all of the time.  Using snapshots will allow you to revert readily and run the scripts over and over. Note: You should not have to revert the DC unless you do something strange with user or service accounts.
+
+When you're learning and testing, keep things simple.  By all means test the build out of a 20 server farm, but work up to it.  Most scenarios can be happily tested with 1 x DC, 1 x SQL box and 2 x SharePoint boxes.  Job done.
+
+Take the principles shown in these scripts and extend them.  For instance: instead of reverting your SQL snapshot, knock up a script that will drop all the databases created by the scripts.  See the webapp/contentdb script for the basic idea.

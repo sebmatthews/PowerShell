@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>6CAFC0C6-A428-4d30-A9F9-700E829FEA51</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MyApplication</RootNamespace>
+    <AssemblyName>MyApplication</AssemblyName>
+    <Name>SPInstallerLite (2016)</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="deploy\" />
+    <Folder Include="xml\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="deploy\01-Set-SQLAlias.ps1" />
+    <Compile Include="deploy\02-Add-LocalAdminAccounts.ps1" />
+    <Compile Include="deploy\03-Add-ServiceAccountToGroup.ps1" />
+    <Compile Include="deploy\04-Add-ServersToNewOrExistingFarm.ps1" />
+    <Compile Include="deploy\05-Set-HealthJobAndLogging.ps1" />
+    <Compile Include="deploy\06-Add-ManagedAccountsToFarm.ps1" />
+    <Compile Include="deploy\07-Add-ApplicationPoolsToFarm.ps1" />
+    <Compile Include="deploy\08-Start-AllFarmServiceInstances.ps1" />
+    <Compile Include="deploy\09-Add-ServiceApplicationsToFarm.ps1" />
+    <Compile Include="deploy\10-Add-SearchServiceToFarm.ps1" />
+    <Compile Include="deploy\11-Set-WindowsServicesAccounts.ps1" />
+    <Compile Include="deploy\12-Create-SPContentDBandWebApplications.ps1" />
+    <Compile Include="deploy\13-Add-SiteCollections.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="deploy\before starting.txt" />
+    <Content Include="deploy\licence.txt" />
+    <Content Include="deploy\readme.txt" />
+    <Content Include="xml\spconfig-2016.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="Build" />
+</Project>

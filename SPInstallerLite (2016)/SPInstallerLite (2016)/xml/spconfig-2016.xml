@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- this region defines the farm configuration data -->
+<farm>
+  <adminaccounts>
+    <account>
+      <name>BIGSEB\sp_admin</name>
+      <password>pass@word1</password>
+    </account>
+    <account>
+      <name>BIGSEB\sp_farm</name>
+      <password>pass@word1</password>
+    </account>
+  </adminaccounts>
+  <groupmemberships>
+    <logusers>
+      <account>
+        <name>BIGSEB\sp_service</name>
+      </account>
+    </logusers>
+  </groupmemberships>
+  <sqlalias>
+    <alias>
+      <name>SP2016</name>
+      <instance>bigseb-sql2012a\sp2016</instance>
+    </alias>
+  </sqlalias>
+  <servers>
+    <bigseb-sp2016a>
+      <serverconfig>
+        <servertype>WFE</servertype>
+        <dbserver>SP2016</dbserver>
+        <configdb>SP_farm_config</configdb>
+        <contentdb>SP_farm_admincontent</contentdb>
+        <farmaccount>BIGSEB\sp_farm</farmaccount>
+        <farmpassword>pass@word1</farmpassword>
+        <farmpassphrase>Pa55phrase!</farmpassphrase>
+        <caport>2016</caport>
+        <addca>YES</addca>
+        <authprov>NTLM</authprov>
+        <createorconnect>CREATE</createorconnect>
+        <searchinstance>YES</searchinstance>
+        <mmsinstance>YES</mmsinstance>
+        <sp2016role>custom</sp2016role>
+      </serverconfig>
+      <serviceinstances>
+        <instance>Secure Store Service</instance>
+        <instance>User Profile Service</instance>
+        <instance>Business Data Connectivity Service</instance>
+        <instance>Managed Metadata Web Service</instance>
+      </serviceinstances>
+    </bigseb-sp2016a>
+    <bigseb-sp2016b>
+      <serverconfig>
+        <servertype>APP</servertype>
+        <dbserver>SP2016</dbserver>
+        <configdb>SP_farm_config</configdb>
+        <contentdb>SP_farm_admincontent</contentdb>
+        <farmaccount>BIGSEB\sp_farm</farmaccount>
+        <farmpassword>pass@word1</farmpassword>
+        <farmpassphrase>Pa55phrase!</farmpassphrase>
+        <caport>2016</caport>
+        <addca>NO</addca>
+        <authprov>NTLM</authprov>
+        <createorconnect>CONNECT</createorconnect>
+        <searchinstance>YES</searchinstance>
+        <mmsinstance>YES</mmsinstance>
+        <sp2016role>custom</sp2016role>
+      </serverconfig>
+      <serviceinstances>
+        <instance>Secure Store Service</instance>
+        <instance>User Profile Service</instance>
+        <instance>Business Data Connectivity Service</instance>
+        <instance>Managed Metadata Web Service</instance>
+      </serviceinstances>
+    </bigseb-sp2016b>
+  </servers>
+  <mgdaccounts>
+    <account>
+      <name>BIGSEB\sp_web</name>
+      <password>pass@word1</password>
+    </account>
+    <account>
+      <name>BIGSEB\sp_service</name>
+      <password>pass@word1</password>
+    </account>
+    <account>
+      <name>BIGSEB\sp_search</name>
+      <password>pass@word1</password>
+    </account>
+    <account>
+      <name>BIGSEB\sp_ups</name>
+      <password>pass@word1</password>
+    </account>
+  </mgdaccounts>
+  <svcaccounts>
+    <service>
+      <servicename>SPAdminV4</servicename>
+      <serviceaccount>BIGSEB\sp_service</serviceaccount>
+    </service>
+    <service>
+      <servicename>SPTraceV4</servicename>
+      <serviceaccount>BIGSEB\sp_service</serviceaccount>
+    </service>
+    <service>
+      <servicename>OSearch16</servicename>
+      <serviceaccount>BIGSEB\sp_search</serviceaccount>
+    </service>
+    <service>
+      <servicename>SPSearchHostController</servicename>
+      <serviceaccount>BIGSEB\sp_search</serviceaccount>
+    </service>
+  </svcaccounts>
+  <applicationpools>
+    <applicationpool>
+      <apppoolname>SharePoint Host Services</apppoolname>
+      <apppoolusername>BIGSEB\sp_service</apppoolusername>
+    </applicationpool>
+    <applicationpool>
+      <apppoolname>SharePoint Search Services</apppoolname>
+      <apppoolusername>BIGSEB\sp_search</apppoolusername>
+    </applicationpool>
+    <applicationpool>
+      <apppoolname>SharePoint WebApp Services</apppoolname>
+      <apppoolusername>BIGSEB\sp_web</apppoolusername>
+    </applicationpool>
+  </applicationpools>
+  <webapplications>
+    <webapp>
+      <name>PoSh WebApp</name>
+      <url>http://powershell2016</url>
+      <hostheader>powershell2016</hostheader>
+      <port>80</port>
+      <apppool>SharePoint WebApp Services</apppool>
+      <apppoolaccount>BIGSEB\sp_web</apppoolaccount>
+      <authentication>NTLM</authentication>
+      <databaseserver>SP2016</databaseserver>
+      <database>SP_farm_content01</database>
+    </webapp>
+    <webapp>
+      <name>PoSh WebApp2</name>
+      <url>http://migration2016</url>
+      <hostheader>migration2016</hostheader>
+      <port>80</port>
+      <apppool>SharePoint WebApp Services</apppool>
+      <apppoolaccount>BIGSEB\sp_web</apppoolaccount>
+      <authentication>NTLM</authentication>
+      <databaseserver>SP2016</databaseserver>
+      <database>SP_farm_content02</database>
+    </webapp>
+  </webapplications>
+  <serviceapplications>
+    <coreconfig>
+      <databaseserver>SP2016</databaseserver>
+      <apppool>SharePoint Host Services</apppool>
+    </coreconfig>
+    <mmsserviceapp>
+      <name>Managed Metadata Service</name>
+      <database>SP_farm_mms</database>
+    </mmsserviceapp>
+    <bcsserviceapp>
+      <name>Business Data Connectivity Service</name>
+      <database>SP_farm_bcs</database>
+    </bcsserviceapp>
+    <secserviceapp>
+      <name>Secure Store Service</name>
+      <database>SP_farm_securestore</database>
+    </secserviceapp>
+    <useserviceapp>
+      <name>Usage and Health Data Collection Service</name>
+      <database>SP_farm_usage</database>
+    </useserviceapp>
+    <upsserviceapp>
+      <name>User Profile Service</name>
+      <profiledatabase>SP_farm_ups_profile</profiledatabase>
+      <socialdatabase>SP_farm_ups_social</socialdatabase>
+      <syncdatabase>SP_farm_ups_sync</syncdatabase>
+    </upsserviceapp>
+    <anaserviceapp>
+      <name>Web Analytics Service</name>
+      <stagedatabase>SP_farm_webanalytics_staging</stagedatabase>
+      <reportdatabase>SP_farm_webanalytics_report</reportdatabase>
+    </anaserviceapp>
+    <staserviceapp>
+      <name>State Service</name>
+      <database>SP_farm_stateservice</database>
+    </staserviceapp>
+  </serviceapplications>
+  <searchconfig>
+    <sqlserver>SP2016</sqlserver>
+    <searchsaname>Search Service</searchsaname>
+    <apppool>SharePoint Search Services</apppool>
+    <searchdatabase>SP_farm_searchservice</searchdatabase>
+    <searchadminserver>bigseb-sp2016b</searchadminserver>
+    <contentaccessaccount>
+      <user>BIGSEB\sp_crawl</user>
+      <password>pass@word1</password>
+    </contentaccessaccount>
+    <searchinstances>
+      <instance>bigseb-sp2016a</instance>
+      <instance>bigseb-sp2016b</instance>
+    </searchinstances>
+    <crawlservers>
+      <instance>bigseb-sp2016a</instance>
+      <instance>bigseb-sp2016b</instance>
+    </crawlservers>
+    <queryservers>
+      <instance>bigseb-sp2016a</instance>
+      <instance>bigseb-sp2016b</instance>
+    </queryservers>
+    <indexlocation>e:\search\index</indexlocation>
+  </searchconfig>
+  <healthjobs>
+    <jobname>AppServerDrivesAreNearlyFull</jobname>
+    <jobname>AppServerDrivesAreNearlyFullWarning</jobname>
+    <jobname>DatabaseCanBeShrinked</jobname>
+    <jobname>AdminAccountsUsedAsProcessIdentities</jobname>
+    <jobname>LoggingTooVerbose</jobname>
+    <jobname>ContentDbsAreTooLarge</jobname>
+  </healthjobs>
+  <shelladmins>
+    <user>BIGSEB\sp_admin</user>
+  </shelladmins>
+  <webappcache>
+    <superuser>BIGSEB\sp_supercache</superuser>
+    <superreader>BIGSEB\sp_superread</superreader>
+  </webappcache>
+  <generalconfig>
+    <outboundemail>
+      <emailserver>smtp.bigseb.local</emailserver>
+      <emailfrom>sharepoint@bigseb.local</emailfrom>
+      <emailreply>sharepoint@bigseb.local</emailreply>
+      <emailcharset>65001</emailcharset>
+    </outboundemail>
+    <logsettings>
+      <daystokeeplogs>30</daystokeeplogs>
+      <loglocation>c:\uls</loglocation>
+      <logspaceondisk>2</logspaceondisk>
+      <limitlogsize>$true</limitlogsize>
+    </logsettings>
+  </generalconfig>
+  <contentdatabaseconfig>
+    <farmaccount>BIGSEB\sp_farm</farmaccount>
+    <instance>SP2016</instance>
+    <database>name</database>
+    <contentdatabases>
+      <contentdb>
+        <name>SP_farm_content01</name>
+        <dbserver>SP2016</dbserver>
+        <maxsites>5</maxsites>
+        <siteswarn>4</siteswarn>
+        <filesize>500000</filesize>
+        <filegrowth>50000</filegrowth>
+        <filegrowthtype>KB</filegrowthtype>
+        <logsize>50000</logsize>
+        <loggrowth>10</loggrowth>
+        <loggrowthtype>Percent</loggrowthtype>
+      </contentdb>
+      <contentdb>
+        <name>SP_farm_content02</name>
+        <dbserver>SP2016</dbserver>
+        <maxsites>5</maxsites>
+        <siteswarn>4</siteswarn>
+        <filesize>500000</filesize>
+        <filegrowth>50000</filegrowth>
+        <filegrowthtype>KB</filegrowthtype>
+        <logsize>50000</logsize>
+        <loggrowth>10</loggrowth>
+        <loggrowthtype>Percent</loggrowthtype>
+      </contentdb>
+    </contentdatabases>
+  </contentdatabaseconfig>
+  <iaconfig>
+    <managedpaths>
+      <path>
+        <webapp>http://powershell2016</webapp>
+        <mpath>content</mpath>
+      </path>
+      <path>
+        <webapp>http://migration2016</webapp>
+        <mpath>content</mpath>
+      </path>
+    </managedpaths>
+    <sitecollections>
+      <sitecollection>
+        <webapp>http://powershell2016</webapp>
+        <name>root</name>
+        <primaryowner>BIGSEB\sp_admin</primaryowner>
+        <template>STS#0</template>
+        <contentdb>SP_farm_content01</contentdb>
+        <path>/</path>
+        <urlstub />
+        <secondaryowner>BIGSEB\administrator</secondaryowner>
+      </sitecollection>
+      <sitecollection>
+        <webapp>http://powershell2016</webapp>
+        <name>test1</name>
+        <primaryowner>BIGSEB\sp_admin</primaryowner>
+        <template>STS#0</template>
+        <contentdb>SP_farm_content01</contentdb>
+        <path>/content/</path>
+        <urlstub>test1</urlstub>
+        <secondaryowner>BIGSEB\administrator</secondaryowner>
+      </sitecollection>
+      <sitecollection>
+        <webapp>http://powershell2016</webapp>
+        <name>test2</name>
+        <primaryowner>BIGSEB\sp_admin</primaryowner>
+        <template>STS#0</template>
+        <contentdb>SP_farm_content01</contentdb>
+        <path>/content/</path>
+        <urlstub>test2</urlstub>
+        <secondaryowner>BIGSEB\administrator</secondaryowner>
+      </sitecollection>
+      <sitecollection>
+        <webapp>http://migration2016</webapp>
+        <name>root</name>
+        <primaryowner>BIGSEB\sp_admin</primaryowner>
+        <template>STS#0</template>
+        <contentdb>SP_farm_content01</contentdb>
+        <path>/</path>
+        <urlstub />
+        <secondaryowner>BIGSEB\administrator</secondaryowner>
+      </sitecollection>
+    </sitecollections>
+  </iaconfig>
+</farm>
+<!-- this is the end of the farm configuration data -->
+<!--the svc-spdevservice admin account entry was removed-->
