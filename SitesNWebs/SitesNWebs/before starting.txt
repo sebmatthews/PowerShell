@@ -1,0 +1,28 @@
+Hey Happy PowerSheller!
+
+This file contains the things you need to be aware of to run the scripts provided.
+
+First up - make sure you have read the list of assumptions/advice below - if you miss some of these, things may not work as expected!
+
+Secondly, the scripts are provided and named to be as intuitive as possible.  If you can count, you should be ok.  In some cases running things out of order won't be bad, but in some cases things won't work.  Perhaps you should play with this?
+
+Third and goal - Remember (as stated in the readme) these scripts are provided to show you PowerShell principles and constructs in a SharePoint context.  They are not intended to be used as production deployment scripts.  Look at AutoSPInstaller if you need something to deploy your real-world SharePoint farms.  Use them in this way, learn, tweak, tinker, even piss about with them - but don't deploy them to production :)
+
+
+Assumptions/Advice
+
+1) It is assumed that you have installed and configured SharePoint and that you have working web applications and at least one site collection.
+
+2) It is assumed you're logged in as a shell admin for your farm.
+	
+3) It is assumed that the execution policy of the machine on which you are running these scripts has been set to "bypass".  Please don't be too concerned at this time as to whether this is philosophically wise or not.
+
+Other Thoughts
+
+I would heartily recommend you use these scripts within a virtualised environment that can be snapshot'd (snapshotted?  snapshite?) and that you take a snapshot of each of the VM guests (including your test DC) whilst they are turned off prior to starting.  I find this approach allows rollback with 100% integrity all of the time.  Using snapshots will allow you to revert readily and run the scripts over and over.
+
+When you're learning and testing, keep things simple.
+
+Take the principles shown in these scripts and extend them don't just use them.  Learn by doing.  Be like doctors and soldiers.
+
+Rock on!
