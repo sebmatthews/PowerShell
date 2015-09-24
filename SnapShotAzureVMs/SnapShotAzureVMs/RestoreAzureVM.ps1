@@ -80,4 +80,4 @@ Function Start-RestoreVirtualMachineDisk {
 #ENDREGION
 
 # do the work
-Start-RestoreVirtualMachineDisk -vmname testvm -servicename ldndc01 -containername vhdbackups -exportlocation "d:\azure\vmconfigs"
+Start-RestoreVirtualMachineDisk -vmname testvm -servicename service -containername vhdbackups -exportlocation "d:\azure\vmconfigs"

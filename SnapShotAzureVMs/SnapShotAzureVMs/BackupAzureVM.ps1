@@ -36,4 +36,4 @@ Function Start-BackupVirtualMachineDisk {
 #ENDREGION
 
 # do the work
-Start-BackupVirtualMachineDisk -vmname testvm -servicename ldndc01 -containername vhdbackups
+Start-BackupVirtualMachineDisk -vmname testvm -servicename service -containername vhdbackups
