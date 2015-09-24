@@ -2,7 +2,8 @@
 # we've got multiple subscriptions against my account so we want to choose the right one
 $subs = Get-AzureSubscription | ?{$_.SubscriptionName -match "Visual"}
 Select-AzureSubscription -SubscriptionName $subs.SubscriptionName
-
+# this seems to be needed for the re-creation of the VM
+Set-AzureSubscription -SubscriptionName $subs.SubscriptionName -CurrentStorageAccountName $subs.CurrentStorageAccountName
 
 #REGION kickassfunctions
 Function Start-RestoreVirtualMachineDisk {
@@ -22,7 +23,7 @@ Function Start-RestoreVirtualMachineDisk {
 	# do some pre-flight checks
 	If ((Get-AzureVM -Name $vmname -ServiceName $servicename).Status -ne "StoppedVM") {
 		Write-Output "The VM $vmname is not in a stopped state, please change it's state.  Exiting."
-		Break;
+		#Break;
 	}
 	
 	If (!(Test-Path -Path $exportlocation)) {
