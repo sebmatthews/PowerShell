@@ -5,7 +5,7 @@ Select-AzureSubscription -SubscriptionName $subs.SubscriptionName
 
 
 #REGION kickassfunctions
-Function Start-BackupVirtualMachineDisks {
+Function Start-BackupVirtualMachineDisk {
     Param (
 		[Parameter(Mandatory=$True)]
 		[string]$vmname,
@@ -16,7 +16,9 @@ Function Start-BackupVirtualMachineDisks {
 	)
 	
 	$disk = Get-AzureVM -Name $vmname -ServiceName $servicename | Get-AzureOSDisk
-    $StorageAccountName = $disk.MediaLink.Host.Split(‘.’)[0]
+    # Hey happy reader. In the line above, the cmdlet 'Get-AzureDataDisk' could be used to return a collection of data disks if needed
+	# You could use this collection if you needed to restore a bunch of data disks also.
+	$StorageAccountName = $disk.MediaLink.Host.Split(‘.’)[0]
 
     $context = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey ((Get-AzureStorageKey -StorageAccountName $StorageAccountName).Primary)
 
@@ -34,4 +36,4 @@ Function Start-BackupVirtualMachineDisks {
 #ENDREGION
 
 # do the work
-Start-BackupVirtualMachineDisks -vmname ldnsp02 -servicename ldndc01 -containername vhdbackups
+Start-BackupVirtualMachineDisk -vmname testvm -servicename ldndc01 -containername vhdbackups
