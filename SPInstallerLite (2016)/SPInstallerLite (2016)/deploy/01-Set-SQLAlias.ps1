@@ -1,16 +1,19 @@
  Param
 	(
-	[Parameter(Mandatory=$True)]
-	[string]$Platform
-	)
+	[Parameter(Mandatory=$True, HelpMessage="You must provide a platform suffix so the script can find the paramter file!")]
+	[string]$Platform,
+	[Parameter(Mandatory=$True, HelpMessage="You must specify where the xml config file is. Recommend copying to the root of a local or mapped drive.")]
+    [string]$xmlfilelocation
+    )
 
 # this script sets the sql server alias from the config file by adding registry keys. simples.
+# the command should look like: 01-Set-SQLAlias.ps1 2016 R: 
 
 # let's clean the error variable as we are not starting a fresh session
 $Error.Clear()
 
 # setup the parameter file
-$parameterfile = "r:\powershell\xml\spconfig-"+$Platform+".xml"
+$parameterfile = "$xmlfilelocation\spconfig-"+$Platform+".xml"
 
 # Be aware that this method is a little clunky as it does not check for existing alias and simply adds new entries!
 [xml]$aliastoadd = Get-Content $parameterfile
