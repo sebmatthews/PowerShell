@@ -15,7 +15,7 @@ Assumptions/Advice
 	
 2) It is assumed that you have NOT run the configuration wizard.  In fact, don't.  Ever.
 
-3) These files need to be placed on a path rooted at R: (map a drive if you want).  You can change this but you will need to alter many of the scripts.  Extracted it should look like this - r:\powershell\deploy.  Perhaps this would be a nice piece of homework - to pass the path into the script as a parameter?  Simples!
+3) You will need to put a copy of your updated xml file somewhere that you can easily reference to the script. Put it at the root of a local or mapped drive for easiest access.
 
 4) It is assumed that the execution policy of the machine on which you are running these scripts has been set to "bypass".  Please don't be too concerned at this time as to whether this is philosophically wise or not.
 
